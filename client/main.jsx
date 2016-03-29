@@ -6,5 +6,14 @@ import React from 'react';
 import { render } from 'react-dom';
 
 import Index from 'components/Index/Index';
+import UptimeBoxesDemo from 'components/UptimeBoxesDemo/Index';
 
-render(<Index items={[1,2,3]} />, document.getElementById('js-main'));
+const Demos = {
+  '?uptime-boxes': UptimeBoxesDemo
+};
+
+let Demo = Demos[window.location.search] || Index;
+
+console.time('Initial render');
+render(<Demo />, document.getElementById('js-main'));
+console.timeEnd('Initial render');
